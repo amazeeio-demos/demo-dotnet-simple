@@ -6,7 +6,14 @@ Simple dotnet app that reads a file in /app/words.txt and displays the output. O
 
 ## Setting the message
 
-If you'd like to override the default message, you can drop a file into `/app/words/words.override.txt`
+If you'd like to override the default message, there are two options.
+
+### From in source control
+You can add a file to the git repo in `src/words.txt` - this will end up in `/app/words.txt` on the running container.
+
+### From inside the running container
+
+You can drop a file into `/app/words/words.override.txt` to override both the default message _and_ `src/words.txt`.
 
 One way of doing this would be to set up a custom task to do this.
 
