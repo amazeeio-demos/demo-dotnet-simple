@@ -37,7 +37,8 @@ services:
       context: .
       dockerfile: ./lagoon/dotnet.dockerfile
     labels:
-      lagoon.type: basic
+      lagoon.type: basic-persistent
+      lagoon.persistent: /app/words/
     expose:
       - "3000"
     << : *default-volumes
