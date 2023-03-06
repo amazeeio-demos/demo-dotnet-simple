@@ -4,12 +4,12 @@ x-volumes:
   &default-volumes
     # Define all volumes you would like to have real-time mounted into the docker containers
     volumes:
-      - .:/blah:delegated ### Local overrides to mount host filesystem. Automatically removed in CI and PROD.
+       - ./words/:/app/words:delegated ### Local overrides to mount host filesystem. Automatically removed in CI and PROD.
 
 x-environment:
   &default-environment
     # Route that should be used locally, if you are using pygmy, this route *must* end with .docker.amazee.io
-    LAGOON_ROUTE: &default-url http://${COMPOSE_PROJECT_NAME:-dotnet-example}.docker.amazee.io
+    LAGOON_ROUTE: &default-url http://demo-dotnet-simple.docker.amazee.io
     # Uncomment if you like to have the system behave like in production
     #LAGOON_ENVIRONMENT_TYPE: production
     # Uncomment to enable xdebug and then restart via `docker-compose up -d`
@@ -60,7 +60,7 @@ services:
       - dotnet 
     environment:
       << : *default-environment # loads the defined environment variables from the top
-      LAGOON_LOCALDEV_URL: dotnet-example.docker.amazee.io
+      LAGOON_LOCALDEV_URL: demo-dotnet-simple.docker.amazee.io
     networks:
       - amazeeio-network
       - default
