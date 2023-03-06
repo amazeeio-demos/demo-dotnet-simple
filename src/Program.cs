@@ -17,6 +17,11 @@ app.MapGet("/", (HttpContext context) => {
         words = System.IO.File.ReadAllText(path);
     }
 
+    var overridePath = "/tmp/words.override.txt";
+    if (File.Exists(overridePath)) {
+        words = System.IO.File.ReadAllText(overridePath);
+    }
+
     context.Response.Headers["X-LAGOON"] = Environment.GetEnvironmentVariable("HOSTNAME");
     return words;
 });
